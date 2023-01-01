@@ -1,26 +1,37 @@
 import React, {useState, useEffect} from "react";
-import './codeBlockPage.css';
 import { useParams } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import './codeBlockPage.css';
 
-// const db= 'https://moveoTask:qwe123@cluster0.51emnwa.mongodb.net/?retryWrites=true&w=majority';
-const db= 'https:localhost3000';
+const endpoint= 'http://localhost:3001';
 
 function CodeBlockPage(){
     const [title, setTitle] = useState("");
     const [code, setCode] = useState("");
+    const [firstVisited, setFirstVisited] = useState(false);
 
     const {id} = useParams();
-
     useEffect( () => {
         const getList = async () => {
-          const res = await fetch(`${db}/codeBlock/${id}`);
-          setTitle(res.title);
-          setCode(res.code);
+          const res = await fetch(`${endpoint}/codeBlock/${id}`);
+          const res2 = await res.json();
+          setTitle(res2.title);
+          setCode(res2.code);
+          setFirstVisited(res2.firstVisited);
         };
         getList();
       }, [id]);
 
-    const onChange = (event) => {setCode(event.target.value)};
+    const onChange = (event) => { setCode(event.target.value) };
+
+    //navigate to lobby page
+    const navigate = useNavigate();
+    const navigateToLobby = () => navigate('/');
+
+    const onClick = async () => {    
+        await fetch(`${endpoint}/codeBlock/${id}`, {method: 'PUT', body: JSON.stringify({title, code}), headers: {'Content-Type': 'application/json',}});         
+        navigateToLobby();
+    }
 
     return(
         <div> 
@@ -29,10 +40,12 @@ function CodeBlockPage(){
             </div>
             <form>
                 <label>Code: 
-                    <textarea onChange={onChange} rows="4" cols="50">{code}</textarea>
+                    <textarea onChange={onChange} rows="4" cols="50" value={code}></textarea>
                 </label>
             </form>
-            
+            { firstVisited && <div><button onClick={onClick}>
+                            <h4>update</h4>
+                          </button></div>}
         </div>
     ); 
 }

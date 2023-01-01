@@ -1,10 +1,9 @@
-//import logo from './logo.svg';
-import './App.css';
 import React from 'react';
 import { Routes, Route } from "react-router";
 import LobbyPage from './pages/lobbyPage/lobbyPage';
 import CodeBlockPage from './pages/codeBlockPage/codeBlockPage';
 import NewCodeBlockPage from './pages/codeBlockPage/newCodeBlockPage';
+import './App.css';
 
 function App() {
   return (
@@ -13,10 +12,9 @@ function App() {
           <Routes>
               <Route path='/' element = { <LobbyPage/> }/>
               <Route path= '/codeBlock/:id' element={ <CodeBlockPage/> }/>
-              <Route path='/newCodeBlock' element = {<NewCodeBlockPage/>}/>
+              <Route path='/newCodeBlock' element = { <NewCodeBlockPage/> }/>
           </Routes> 
       </div>
-
     );
   }
 

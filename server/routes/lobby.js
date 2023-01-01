@@ -8,8 +8,9 @@ router.get('/', async (req, res) => {
         // execute a query to find the code blocks
         const codeBlocks = await CodeBlock.find({});
         // send the result to the client
-        res.json({ name: 'Nitzan' });
-    } catch (err) {// handle any errors
+        res.json(codeBlocks);
+
+    } catch(err) {// handle any errors
         res.json({ message: err });
     }
 });

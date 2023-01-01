@@ -1,12 +1,9 @@
 import React from "react";
-import './lobbyPage.css';
 import CodeBlockList from '../../comps/codeBlocks/codeBlockList';
 import { useNavigate } from "react-router-dom";
+import './lobbyPage.css';
 
 function LobbyPage(){
-
- // const isStudent = true; {/*need to create field*/}
-
   //navigate to new code block page
   const navigate = useNavigate();
   const navigateToNewCodeBlock = () => navigate('/newCodeBlock');

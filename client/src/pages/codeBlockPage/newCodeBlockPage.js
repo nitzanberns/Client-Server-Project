@@ -1,16 +1,22 @@
 import React, {useState, useEffect} from "react";
-import {v4 as uuidv4} from 'uuid';
+import { useNavigate } from "react-router-dom";
 import './newCodeBlockPage.css';
 
+
+const endpoint= 'http://localhost:3001';
 
 function NewCodeBlockPage(){
     const [title, setTitle] = useState("");
     const [code, setCode] = useState("");
 
-    const onClick = () => {    
-        const id = uuidv4(); //unique id for the new code block
-        fetch('/newCodeBlock', {method: 'POST', data: {id, title, code}});         
-        }
+    //navigate to lobby page
+    const navigate = useNavigate();
+    const navigateToLobby = () => navigate('/');
+
+    const onClick = async () => {    
+        await fetch(`${endpoint}/newCodeBlock`, {method: 'POST', body: JSON.stringify({title, code}), headers: {'Content-Type': 'application/json',}});         
+        navigateToLobby();
+    }
         
     useEffect(() => {},[]);
 
