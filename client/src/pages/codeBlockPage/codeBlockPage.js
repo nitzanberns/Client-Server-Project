@@ -3,8 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import './codeBlockPage.css';
 
-const endpoint= 'http://localhost:3001';
-
+const endpoint= 'http://35.179.77.89/:3001';
 function CodeBlockPage(){
     const [title, setTitle] = useState("");
     const [code, setCode] = useState("");

@@ -2,7 +2,7 @@ import React,  { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import "./codeBlockList.css";
 
-const endpoint= 'http://localhost:3001';
+const endpoint= 'http://35.179.77.89/:3001';
 
 function CodeBlockList(){
     const [codeBlocks, setCodeBlocks] = useState([]);
