@@ -1,4 +1,4 @@
-# Moveo Home Task
+# Home Task
 To run a Node.js and React project, you will need to have Node.js installed on your machine.
 You will also need to have a development environment set up, such as Visual Studio Code.
 #
